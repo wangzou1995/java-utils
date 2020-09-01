@@ -23,7 +23,7 @@ import java.util.Objects;
 public class ExceptionControllerAdvice {
     @ExceptionHandler(APIException.class)
     public ResultVO<String> APIExceptionHandler(APIException e) {
-        return new ResultVO<>(ResultCode.FAILED, e.getMsg(),false);
+        return new ResultVO<>(ResultCode.FAILED, e.getMsg(), false);
     }
 
     @ExceptionHandler({HttpRequestMethodNotSupportedException.class})
@@ -45,9 +45,9 @@ public class ExceptionControllerAdvice {
         ExceptionCode annotation = field.getAnnotation(ExceptionCode.class);
         // 有注解的话就返回注解的响应信息
         if (annotation != null) {
-            return new ResultVO<>(annotation.value(), annotation.message(), defaultMessage,false);
+            return new ResultVO<>(annotation.value(), annotation.message(), defaultMessage, false);
         }
         // 没有注解就提取错误提示信息进行返回统一错误码
-        return new ResultVO<>(ResultCode.VALIDATE_FAILED, defaultMessage,false);
+        return new ResultVO<>(ResultCode.VALIDATE_FAILED, defaultMessage, false);
     }
 }
